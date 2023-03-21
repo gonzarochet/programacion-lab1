@@ -1,5 +1,13 @@
 # depslib dependency file v1.0
-1678799772 source:c:\dev\programacion-lab1\hello-world\main.c
+1679419426 source:c:\dev\programacion-lab1\hello-world\main.c
 	<stdio.h>
 	<stdlib.h>
+	"pila.h"
+
+1679419422 c:\dev\programacion-lab1\hello-world\pila.h
+	<stdio.h>
+	<malloc.h>
+
+1679419591 source:c:\dev\programacion-lab1\hello-world\pila.c
+	"pila.h"
 
