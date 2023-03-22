@@ -53,40 +53,18 @@ void mostrar2(P_Pila p)
     int max = valorEspacios(p);
     int espacio;
 
+    printf("\n -TOPE- \n");
+
     for(i = p->postope; i > 0; i--)
     {
         espacio = max-cantidadCaracteres(p->valores[i-1]);
-        if(i == p->postope)
-        {
-            printf("\n -TOPE- \n");
-            printf("|");
-            printf("%d", p->valores[i-1]);
-            espacios(espacio);
-            printf("| \n");
 
-        }
-        else
-        {
-            if(i==1)
-            {
-
-                printf("|");
-                printf("%d", p->valores[i-1]);
-                espacios(espacio);
-                printf("|");
-                printf("\n -BASE-\n");
-            }
-            else
-            {
-                printf("|");
-                printf("%d", p->valores[i-1]);
-                espacios(espacio);
-                printf("| \n");
-            }
-
-        }
-
+        printf("|");
+        printf("%d", p->valores[i-1]);
+        espacios(espacio);
+        printf("| \n");
     }
+    printf("\n -BASE-\n");
 
 }
 

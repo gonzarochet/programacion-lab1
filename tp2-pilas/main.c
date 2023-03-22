@@ -1,10 +1,78 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "pila.h"
+#include <conio.h>
 
 int main()
 {
-    printf("Hello world!\n");
+    int option;
+    printf("<<<Ingrese el número del ejercicio>>>\n");
+    printf("1. Cargar desde el teclado una pila DADA con 5 elementos. Pasar los tres primeros elementos a la pila AUX1 y los dos restantes a la pila AUX2, ambas pilas inicializadas en vacío\n");
+    printf("2. Cargar desde el teclado la pila ORIGEN e inicializar en vacío la pila DESTINO. Pasar todos los elementos de la pila ORIGEN a la pila DESTINO \n");
+    printf("3. Cargar desde teclado una pila DADA y pasar a la pila DISTINTOS todos aquellos elementos distintos al valor 8.\n");
+    printf("4. Cargar desde el teclado la pila ORIGEN e inicializar en vacío la pila DESTINO. Pasar los elementos de la pila ORIGEN a la pila DESTINO, pero dejándolos en el mismo orden. \n");
+    printf("5. Cargar desde el teclado la pila DADA. Invertir la pila de manera que DADA contenga los elementos cargados originalmente en ella, pero en orden inverso. \n");
+    printf("6. Pasar el primer elemento (tope) de la pila DADA a su última posición (base), dejando los restantes elementos en el mismo orden. \n");
+    printf("7. Pasar el último elemento (base) de la pila DADA a su primera posición (tope), dejando los restantes elementos en el mismo orden. \n");
+    printf("8. Repartir los elementos de la pila MAZO en las pilas JUGADOR1 y JUGADOR2 en forma alternativa. \n");
+    printf("9. Comparar la cantidad de elementos de las pilas A y B. Mostrar por pantalla el resultado. \n");
+    printf("10. Cargar las pilas A y B, y luego compararlas, evaluando si son completamente iguales (en cantidad de elementos, valores que contienen y posición de los mismos). Mostrar por pantalla el resultado. \n ");
+    printf("11. Suponiendo la existencia de una pila MODELO que no esté vacía, eliminar de la pila DADA todos los elementos que sean iguales al tope de la pila MODELO. \n");
+    printf("12. Suponiendo la existencia de una pila MODELO (vacía o no), eliminar de la pila DADA todos los elementos que existan en MODELO. \n");
+    printf("13. Suponiendo la existencia de una pila LÍMITE, pasar los elementos de la pila DADA que sean mayores o iguales que el tope de LIMITE a la pila MAYORES, y los elementos que sean menores a la pila MENORES. \n");
+    printf("14. Determinar si la cantidad de elementos de la pila DADA es par. Si es par, pasar el elemento del tope de la pila AUX a la pila PAR y si es impar pasar el tope a la pila IMPAR. (NO contar los elementos) \n");
+    scanf("%d",&option);
+    system("cls");
+    switch(option)
+    {
+    case 1:
+        ejercicio1();
+        break;
+    case 2:
+        ejercicio2();
+        break;
+    case 3:
+        ejercicio3();
+        break;
+    case 4:
+        ejercicio4();
+        break;
+    case 5:
+        ejercicio5();
+        break;
+    case 6:
+        ejercicio6();
+        break;
+    case 7:
+        ejercicio7();
+        break;
+    case 8:
+        ejercicio8();
+        break;
+    case 9:
+        ejercicio9();
+        break;
+    case 10:
+        ejercicio10();
+        break;
+    case 11:
+        ejercicio11();
+        break;
+    case 12:
+        ejercicio11();
+        break;
+    case 13:
+        ejercicio13();
+        break;
+    case 14:
+        ejercicio14();
+        break;
+
+
+
+    }
+
+
     return 0;
 }
 
@@ -43,19 +111,16 @@ void ejercicio1()
 
 
     //desapilar 3 elementos y apilar en aux1
-    while(!pilavacia(&dada)&& i<3)
-    {
-        apilar(&aux1,desapilar(&dada));
 
-        i++;
+    apilar(&aux1,desapilar(&dada));
+    apilar(&aux1,desapilar(&dada));
+    apilar(&aux1,desapilar(&dada));
 
-    }
-    i=0;
-    //paso 2 elementos a aux1
-    while(!pilavacia(&dada) && i<2)
-    {
-        apilar(&aux2,desapilar(&dada));
-    }
+    //paso 2 elementos a aux2
+    apilar(&aux2,desapilar(&dada));
+    apilar(&aux2,desapilar(&dada));
+
+
     printf("dada");
     mostrar(&dada);
     printf("aux1");
@@ -81,7 +146,7 @@ void ejercicio2()
     {
         leer(&origen);
         printf("Desea continuar? s/n");
-        //fflush(stdin);
+        fflush(stdin);
         scanf("%c",&control);
     }
     while (control == 's');
@@ -89,7 +154,6 @@ void ejercicio2()
     printf("Origen");
     mostrar(&origen);
 
-//Primer pasada de pilas
     while(!pilavacia(&origen))
     {
         apilar(&destino,desapilar(&origen));
@@ -98,18 +162,6 @@ void ejercicio2()
     mostrar(&origen);
     printf("Destino");
     mostrar(&destino);
-
-//Segunda pasada de pila
-    while (!pilavacia(&destino))
-    {
-        apilar(&origen,desapilar(&destino));
-    }
-
-    printf("Destino");
-    mostrar(&destino);
-    printf("Origen");
-    mostrar(&origen);
-
 }
 
 
@@ -138,7 +190,7 @@ void ejercicio3()
     printf("Dada");
     mostrar(&dada);
 
-    while(!pilavacia(&dada))
+    while(!pilavacia(&dada)) // Hago que los elementos vuelvan a dada.
     {
         apilar(&aux,desapilar(&dada));
     }
@@ -158,6 +210,52 @@ void ejercicio3()
 
     printf("Pila distinto");
     mostrar (&distinto);
+
+}
+///4. Cargar desde el teclado la pila ORIGEN e inicializar en vacío la pila DESTINO.
+///   Pasar los elementos de la pila ORIGEN a la pila DESTINO, pero dejándolos en el mismo orden.
+void ejercicio4(){
+
+    Pila origen, destino, aux;
+    inicpila(&origen);
+    inicpila(&destino);
+    inicpila(&aux);
+
+    char op;
+    int num;
+
+    do{
+        printf("Ingrese un numero \n");
+        scanf("%d",&num);
+        apilar(&origen,num);
+
+        printf("\nDesea seguir agregando más numeros (s/n)\n");
+        fflush(stdin);
+        scanf("%c",&op);
+
+    }while(op=='s');
+
+    printf("\nPila ORIGEN cargada inicial");
+    mostrar2(&origen);
+
+
+
+    while(!pilavacia(&origen)){
+        apilar(&aux,desapilar(&origen));
+    }
+    while(!pilavacia(&aux)){
+        apilar(&destino,desapilar(&aux));
+    }
+
+    printf("\nPila ORIGEN descargada");
+    mostrar2(&origen);
+
+    printf("\n Pila DESTINO cargada");
+    mostrar2(&destino);
+
+
+
+
 
 }
 
@@ -385,7 +483,7 @@ void ejercicio10()
         printf("Desea continuar? s/n \n");
         fflush(stdin);
         scanf("%c", &c);
-        na++;
+        //na++;
     }
     while (c=='s');
 
@@ -399,7 +497,7 @@ void ejercicio10()
         printf("Desea continuar? s/n \n");
         fflush(stdin);
         scanf("%c", &c);
-        nb++;
+       // nb++;
     }
     while (c=='s');
 
@@ -432,7 +530,7 @@ void ejercicio10()
 }
 
 
-/// 11- 12. Suponiendo la existencia de una pila MODELO (vacía o no) que no esté vacía,
+/// 11- 12. Suponiendo la existencia de una pila MODELO (vacía o no),
 ///     eliminar de la pila DADA todos los elementos que sean iguales al tope de la pila MODELO.
 
 
@@ -533,7 +631,7 @@ void ejercicio13()
     {
         leer(&limite);
         printf("\nDesea continuar? s/n");
-        printf("%c",cont4=getch());
+        printf("%c",cont4=getch()); // cont4 = getch();
         printf("\n");
     }
     while (cont4=='s');
@@ -601,7 +699,11 @@ void ejercicio14()
         printf("\n");
     }
     while(cont4 =='s');
+    printf("<<<<<<<<<<La pila dada>>>>>>>>>>>>>>");
+    mostrar2(&dada);
+    system("pause");
     system("cls");
+
 //repartir dos numeros
     while(!pilavacia(&dada))
     {
