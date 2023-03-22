@@ -5,12 +5,16 @@
 
 void dividers(int number);
 void dados(int cantDados);
+void amountValues();
 
 
 int main()
 {
-    //dividers();
-    dados(2);
+    //dividers(200);
+    //dados(2);
+    amountValues();
+
+
     return 0;
 }
 
@@ -40,6 +44,26 @@ void dados(int cantDados){
 }
 
 
+/// 4. Cantidad de elementos
+/// Leer valores del usuario hasta que introduzca un 0.
+/// Contar la cantidad de valores introducidos y al finalizar informarlo por pantalla:
 
-/// 4.
+void amountValues(){
+
+    int value = 0;
+    int quantity = 0;
+    do{
+        printf("Ingrese un valor. Si no desea continuar ingrese 0 \n");
+        scanf("%d",&value);
+        if(value!=0){
+           quantity++;
+        }
+    }while(value!=0);
+
+    printf("La cantidad de valores ingresados es: %d", quantity);
+
+}
+
+
+///5.
 
