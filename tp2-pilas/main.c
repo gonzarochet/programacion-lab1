@@ -468,8 +468,8 @@ void ejercicio10()
     inicpila(&auxA);
     inicpila(&auxB);
 
-    int na=0;
-    int nb=0;
+    //int na=0;
+    //int nb=0;
     int flag = 0;
 
 
