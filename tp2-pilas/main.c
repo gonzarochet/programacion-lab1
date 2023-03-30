@@ -2,9 +2,25 @@
 #include <stdlib.h>
 #include "pila.h"
 #include <conio.h>
+void ejercicio1();
+void ejercicio2();
+void ejercicio3();
+void ejercicio4();
+void ejercicio5();
+void ejercicio6();
+void ejercicio7();
+void ejercicio8();
+void ejercicio9();
+void ejercicio10();
+void ejercicio11();
+void ejercicio13();
+void ejercicio14();
+
+void ordernacionPorInsercion();
 
 int main()
 {
+    srand(time(NULL));
     int option;
     printf("<<<Ingrese el número del ejercicio>>>\n");
     printf("1. Cargar desde el teclado una pila DADA con 5 elementos. Pasar los tres primeros elementos a la pila AUX1 y los dos restantes a la pila AUX2, ambas pilas inicializadas en vacío\n");
@@ -21,6 +37,7 @@ int main()
     printf("12. Suponiendo la existencia de una pila MODELO (vacía o no), eliminar de la pila DADA todos los elementos que existan en MODELO. \n");
     printf("13. Suponiendo la existencia de una pila LÍMITE, pasar los elementos de la pila DADA que sean mayores o iguales que el tope de LIMITE a la pila MAYORES, y los elementos que sean menores a la pila MENORES. \n");
     printf("14. Determinar si la cantidad de elementos de la pila DADA es par. Si es par, pasar el elemento del tope de la pila AUX a la pila PAR y si es impar pasar el tope a la pila IMPAR. (NO contar los elementos) \n");
+    printf("15. GUIA 2 - Dada la pila ORIGEN ordenarla en forma ascendente por método de inserción dejando el resultado en la pila ORIGEN. Para este ejercicio usar lo aprendido para el ejercicio 5.  \n");
     scanf("%d",&option);
     system("cls");
     switch(option)
@@ -67,6 +84,8 @@ int main()
     case 14:
         ejercicio14();
         break;
+    case 15:
+        ordernacionPorInsercion();
 
 
 
@@ -214,7 +233,8 @@ void ejercicio3()
 }
 ///4. Cargar desde el teclado la pila ORIGEN e inicializar en vacío la pila DESTINO.
 ///   Pasar los elementos de la pila ORIGEN a la pila DESTINO, pero dejándolos en el mismo orden.
-void ejercicio4(){
+void ejercicio4()
+{
 
     Pila origen, destino, aux;
     inicpila(&origen);
@@ -224,7 +244,8 @@ void ejercicio4(){
     char op;
     int num;
 
-    do{
+    do
+    {
         printf("Ingrese un numero \n");
         scanf("%d",&num);
         apilar(&origen,num);
@@ -233,17 +254,20 @@ void ejercicio4(){
         fflush(stdin);
         scanf("%c",&op);
 
-    }while(op=='s');
+    }
+    while(op=='s');
 
     printf("\nPila ORIGEN cargada inicial");
     mostrar2(&origen);
 
 
 
-    while(!pilavacia(&origen)){
+    while(!pilavacia(&origen))
+    {
         apilar(&aux,desapilar(&origen));
     }
-    while(!pilavacia(&aux)){
+    while(!pilavacia(&aux))
+    {
         apilar(&destino,desapilar(&aux));
     }
 
@@ -497,7 +521,7 @@ void ejercicio10()
         printf("Desea continuar? s/n \n");
         fflush(stdin);
         scanf("%c", &c);
-       // nb++;
+        // nb++;
     }
     while (c=='s');
 
@@ -748,3 +772,79 @@ void ejercicio14()
 
 
 }
+
+
+
+void ordernacionPorInsercion()
+{
+    Pila dada, aux, dato;
+    inicpila(&dada);
+    inicpila(&aux);
+    inicpila(&dato);
+
+
+
+    for(int i = 0; i<10; i++)
+    {
+        apilar(&dada,rand()%10+1);
+    }
+
+    printf("<<<<<<<< DADA DESORDENADA >>>>>>>>>>>>");
+    mostrar2(&dada);
+
+
+    // apilar(&dato, 3);
+
+    //inserta un dato
+
+//    while((!pilavacia(&dada))&& tope(&dato)<tope(&dada))
+//    {
+//        apilar(&aux,desapilar(&dada));
+//    }
+//    apilar(&dada,desapilar(&dato));
+//
+//    while(!pilavacia(&aux))
+//    {
+//        apilar(&dada,desapilar(&aux));
+//    }
+
+    if(!pilavacia(&dada))
+    {
+
+        apilar(&dato,desapilar(&dada));
+        while(!pilavacia(&dada))
+        {
+            if(tope(&dada)>tope(&dato))
+            {
+                apilar(&dato, desapilar(&dada));
+            }
+            else
+            {
+                while(!pilavacia(&dato) && tope(&dato)>tope(&dada))
+                {
+                    apilar(&aux,desapilar(&dato));
+                }
+                apilar(&dato, desapilar(&dada));
+
+                while(!pilavacia(&aux))
+                {
+                    apilar(&dato,desapilar(&aux));
+                }
+            }
+        }
+        while(!pilavacia(&dato))
+        {
+            apilar(&dada,desapilar(&dato));
+        }
+    }
+
+    printf("\n <<<<<<<< DADA ORDENADA >>>>>>>>>>>>");
+    mostrar2(&dada);
+}
+
+
+
+
+
+
+
