@@ -1,6 +1,7 @@
 # depslib dependency file v1.0
-1681745577 source:c:\dev\programacion-lab1\arrays\main.c
+1681835600 source:c:\dev\programacion-lab1\arrays\main.c
 	<stdio.h>
 	<stdlib.h>
 	<conio.h>
+	<math.h>
 
