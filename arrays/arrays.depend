@@ -1,7 +1,15 @@
 # depslib dependency file v1.0
-1681835600 source:c:\dev\programacion-lab1\arrays\main.c
+1681852880 source:c:\dev\programacion-lab1\arrays\main.c
 	<stdio.h>
 	<stdlib.h>
 	<conio.h>
 	<math.h>
+	"pila.h"
+
+1679497902 source:c:\dev\programacion-lab1\arrays\pila.c
+	"pila.h"
+
+1679420119 c:\dev\programacion-lab1\arrays\pila.h
+	<stdio.h>
+	<malloc.h>
 

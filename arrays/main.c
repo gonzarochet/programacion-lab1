@@ -2,26 +2,59 @@
 #include <stdlib.h>
 #include <conio.h>
 #include <math.h>
+#include "pila.h"
 
 
 int cargaArregloVacio(int array [],int dimension);
 int cargaArregloConDatosPrevios(int arreglo[],int validos,int dimension);
 void cargaArregloRandomConPuntero(int arreglo[], int * validos, int dim);
 void recorrerArregloEnteros(int arreglo[], int validos);
+int pasajePilaToArray(Pila * p, int array[], int dim);
+int pasajeArregloToPila(int array[],int validos, Pila * p);
 
 
 int main()
 {
+    system("color BD");
+    Pila pilita;
+    inicpila(&pilita);
+
     int dim = 7;
     int temp[dim];
     int validos = 0;
+
 
     temp[0] = 45;
     temp[1] = 27;
 
     validos = 2;
 
+
     cargaArregloRandomConPuntero(temp,&validos,dim);
+
+    printf("\n1. ARRAY CON DATOS CARGADO\n");
+    recorrerArregloEnteros(temp,validos);
+    system("pause");
+
+    printf("\n2. PASAJE DE ARREGLO A LA PILA\n");
+    validos = pasajeArregloToPila(temp,validos,&pilita);
+
+    printf("\n La Pila con los datos del arreglo\n");
+    mostrar2(&pilita);
+
+    printf("\n El arreglo vacio \n");
+    recorrerArregloEnteros(temp,validos);
+
+    system("pause");
+
+    printf("\n3. PASAJE DE LA PILA AL ARREGLO\n");
+
+    validos = pasajePilaToArray(&pilita,temp,dim);
+
+     printf("\n La Pila vacia \n");
+    mostrar2(&pilita);
+
+     printf("\n El arreglo con sus datos originales\n");
     recorrerArregloEnteros(temp,validos);
 
 
@@ -118,5 +151,30 @@ void recorrerArregloEnteros(int arreglo[], int validos){
     }
 }
 
+int pasajePilaToArray(Pila * p, int array[], int dim){
+
+    int validos = 0;
+
+    while(!pilavacia(p) && validos < dim){
+
+        array[validos] = desapilar(p);
+        validos++;
+    }
+
+    return validos;
+
+
+}
+
+int pasajeArregloToPila(int array[],int validos, Pila * p){
+
+    int i;
+    for(i = validos; i>0;i--){
+        apilar(p,array[i-1]);
+    }
+    validos = i;
+
+    return validos;
+}
 
 
