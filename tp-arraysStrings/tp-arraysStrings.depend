@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1684668099 source:c:\develop\c\programacion-lab1\tp-arraysstrings\pila.c
+	"pila.h"
+
+1684668099 c:\develop\c\programacion-lab1\tp-arraysstrings\pila.h
+	<stdio.h>
+	<malloc.h>
+
