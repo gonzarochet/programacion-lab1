@@ -1,0 +1,14 @@
+# depslib dependency file v1.0
+1679497902 source:c:\dev\programacion-lab1\clase-nivelatorio-113\pila.c
+	"pila.h"
+
+1679420119 c:\dev\programacion-lab1\clase-nivelatorio-113\pila.h
+	<stdio.h>
+	<malloc.h>
+
+1709848483 source:c:\dev\programacion-lab1\clase-nivelatorio-113\main.c
+	<stdio.h>
+	<stdlib.h>
+	"pila.h"
+	<time.h>
+
