@@ -26,7 +26,7 @@ int main()
     int numero = 0;
 
 
-    for(int i = 0; i < 5; i++)
+    for(int i = 0; i < 8; i++)
     {
         numero = rand()%10+1;
         apilar(&dada,numero);
@@ -34,7 +34,7 @@ int main()
 
     int topeDada = tope(&dada);
 
-    mostrar2(&dada);
+    mostrar(&dada);
 
     while(!pilavacia(&dada))
     {
@@ -45,7 +45,6 @@ int main()
             apilar(&par,desapilar(&dada));
         }
     }
-
 
 
     while(!pilavacia(&par) && !pilavacia(&impar))
@@ -67,7 +66,7 @@ int main()
     else
     {
         printf("La cantidad de elementos es impar");
-        //apilar(&impar,topeDada);
+        apilar(&impar,topeDada);
         mostrar2(&impar);
 
     }
